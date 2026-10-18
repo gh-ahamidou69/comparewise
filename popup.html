@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CompareWise</title>
+  <link rel="stylesheet" href="src/popup.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">C</div>
+      <div class="brand-copy">
+        <h1>CompareWise</h1>
+        <p>Choisir, sans ouvrir 15 onglets.</p>
+      </div>
+      <span class="count" id="product-count">0 / 5</span>
+    </header>
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">VOTRE COMPARATIF</p>
+        <h2>Tout comparer.<br><span>Au même endroit.</span></h2>
+      </div>
+      <div class="hero-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none"><rect x="5" y="7" width="15" height="34" rx="3" stroke="currentColor" stroke-width="2"/><rect x="28" y="7" width="15" height="34" rx="3" stroke="currentColor" stroke-width="2"/><path d="M9 14h7M9 19h7M32 14h7M32 19h7M9 32h7M32 32h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M20 24h8m-3-3 3 3-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </section>
+
+    <button id="add-current" class="primary-btn" type="button">
+      <span class="plus">+</span>
+      <span><strong>Ajouter l'onglet actuel</strong><small>Récupérer les informations du produit</small></span>
+      <span class="btn-arrow">↗</span>
+    </button>
+
+    <div id="status" class="status" role="status" aria-live="polite" hidden></div>
+
+    <section class="products-section">
+      <div class="section-heading">
+        <div>
+          <h3>Mes produits <span id="list-count">0</span></h3>
+          <p>Jusqu'à 5 produits par comparaison</p>
+        </div>
+        <button id="manual-toggle" class="text-btn" type="button">+ Saisie manuelle</button>
+      </div>
+
+      <form id="manual-form" class="manual-form" hidden>
+        <label>Nom du produit<input id="manual-title" maxlength="180" required placeholder="Ex. Ordinateur portable 14 pouces"></label>
+        <div class="form-row">
+          <label>Prix<input id="manual-price" type="number" min="0" step="0.01" placeholder="899.00"></label>
+          <label>Devise<select id="manual-currency"><option value="EUR">EUR (€)</option><option value="USD">USD ($)</option><option value="GBP">GBP (£)</option><option value="CHF">CHF</option></select></label>
+        </div>
+        <label>URL du produit<input id="manual-url" type="url" placeholder="https://..."></label>
+        <label>Marque (facultatif)<input id="manual-brand" maxlength="100" placeholder="Ex. Lenovo"></label>
+        <div class="form-actions"><button class="secondary-btn" id="cancel-manual" type="button">Annuler</button><button class="primary-small" type="submit">Ajouter</button></div>
+      </form>
+
+      <div id="empty-state" class="empty-state">
+        <div class="empty-illustration" aria-hidden="true">
+          <div class="mini-card mini-card-back"><span></span><i></i><i></i></div>
+          <div class="mini-card mini-card-front"><span></span><i></i><i></i></div>
+          <div class="mini-plus">+</div>
+        </div>
+        <strong>Votre comparatif commence ici</strong>
+        <p>Ouvrez une fiche produit puis ajoutez-la. Vous pouvez aussi saisir un produit manuellement.</p>
+      </div>
+
+      <div id="product-list" class="product-list"></div>
+    </section>
+
+    <section id="comparison-section" class="comparison-section" hidden>
+      <div class="section-heading">
+        <div>
+          <h3>Comparaison</h3>
+          <p>Les données absentes restent signalées.</p>
+        </div>
+        <button id="export-csv" class="text-btn" type="button">Exporter CSV ↓</button>
+      </div>
+      <div id="comparison-table-wrap" class="table-wrap"></div>
+    </section>
+
+    <footer class="footer">
+      <span class="privacy-dot"></span>
+      <span>Stockage local · Vos données restent dans ce navigateur</span>
+      <button id="clear-all" type="button" hidden>Tout effacer</button>
+    </footer>
+  </main>
+  <script src="src/popup.js"></script>
+</body>
+</html>
